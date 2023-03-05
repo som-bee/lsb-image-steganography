@@ -11,7 +11,7 @@ public class ExtractFromStego {
     public static void main(String[] args) {
 
         // cover image file
-        File coverImg = new File("cover-images/steg-cover.png");
+        File coverImg = new File("stego-cover/steg-cover.png");
 
         // fingerprint file
         // File fPrint = new File("thumb-extracted.png");
