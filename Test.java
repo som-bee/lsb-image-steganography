@@ -1,3 +1,5 @@
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -6,10 +8,29 @@ public  class Test {
 
 
     public static void main(String[] args)
+
     {
+        int color=1;
+        Boolean colorArr[]=new Boolean[8];
+
+        String colorString =Integer.toBinaryString(color);
+        int index = 7;
+        for (int i=colorString.length()-1; i>=0; i--) {
+            colorArr[index]=('1'==colorString.charAt(i));
+            //System.out.println(colorArr[index]+" "+colorString.charAt(i));
+            index--;
+        }
+        System.out.println(Arrays.toString(colorArr));
+
+
+
         Boolean[][] colorsArray = new Boolean[3][8];
         
-        Boolean[] colorArr =new Boolean[]{true,false,true,false};
+        
+
+        ArrayList<Boolean[][]> pixArr=  steg.getPixelArray(new File("thumb-shorten.png"));
+
+        ExtractFromStego.getImageFromPixelArray(new File("extracted-thumb-test.png"), pixArr);
        
     }
 } 

@@ -72,9 +72,9 @@ public class ExtractFromStego {
                 System.out.println("Region: " + region + ", Segment: " + seg);
                 System.out.println("xs: " + xs + ", ys: " + ys + ", xe: " + xe + ", ye: " + ye);
 
-                // fPArrVars.hidden = false;
+                // FPExtractingVars.hidden = false;
 
-                fPArrVars.init();
+                FPExtractingVars.init();
                 // pixel array of fingerprint
                 ArrayList<Boolean[][]> fPrintPixelArray = new ArrayList<Boolean[][]>();
                 // adding initial pixel
@@ -123,27 +123,27 @@ public class ExtractFromStego {
         Boolean curColorBit = coverColor % 2 == 1;
 
         // finger print image current color of current pixel
-        fPrintPixelArray.get(fPArrVars.curfPrintPixel)[fPArrVars.curfPrintColor][fPArrVars.curfPrintBit] = curColorBit;
+        fPrintPixelArray.get(FPExtractingVars.curfPrintPixel)[FPExtractingVars.curfPrintColor][FPExtractingVars.curfPrintBit] = curColorBit;
 
         // incrementing the color counter
 
-        fPArrVars.curfPrintBit++;
+        FPExtractingVars.curfPrintBit++;
 
-        if (fPArrVars.curfPrintBit / 8 >= 1) {
-            fPArrVars.curfPrintColor += 1;
+        if (FPExtractingVars.curfPrintBit / 8 >= 1) {
+            FPExtractingVars.curfPrintColor += 1;
         }
 
-        if (fPArrVars.curfPrintColor / 3 >= 1) {
+        if (FPExtractingVars.curfPrintColor / 3 >= 1) {
             fPrintPixelArray.add(new Boolean[3][8]);
-            fPArrVars.curfPrintPixel += 1;
+            FPExtractingVars.curfPrintPixel += 1;
         }
 
-        fPArrVars.curfPrintColor %= 3;
-        fPArrVars.curfPrintBit %= 8;
+        FPExtractingVars.curfPrintColor %= 3;
+        FPExtractingVars.curfPrintBit %= 8;
 
         // checking if the fingerprint hiding completed or not
-        // if (fPArrVars.curfPrintPixel >= fPrintPixelArray.size()) {
-        // fPArrVars.hidden = true;
+        // if (FPExtractingVars.curfPrintPixel >= fPrintPixelArray.size()) {
+        // FPExtractingVars.hidden = true;
         // System.out.println("hidden successfully:^)");
         // //break;
         // }
@@ -151,7 +151,7 @@ public class ExtractFromStego {
     }
 
     // getting fingerprint image pixel array from the fingerprint image file
-    private static void getImageFromPixelArray(File image, ArrayList<Boolean[][]> pixelArray) {
+    public static void getImageFromPixelArray(File image, ArrayList<Boolean[][]> pixelArray) {
 
         int width = 100;
         int height = 125;
@@ -208,7 +208,7 @@ public class ExtractFromStego {
 
 }
 
-class fPArrVars {
+class FPExtractingVars {
     public static int curfPrintPixel = 0;
     public static int curfPrintColor = 0;
     public static int curfPrintBit = 0;

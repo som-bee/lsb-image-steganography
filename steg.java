@@ -75,13 +75,13 @@ public class steg {
                 System.out.println("Region: " + region + ", Segment: " + seg);
                 System.out.println("xs: " + xs + ", ys: " + ys + ", xe: " + xe + ", ye: " + ye);
 
-                fPArrVars.hidden = false;
+                FPHidingVars.hidden = false;
 
-                fPArrVars.init();
+                FPHidingVars.init();
 
 
-                for (int y = ys; y <= ye && !fPArrVars.hidden; y+=1) {
-                    for (int x = xs; x <= xe && !fPArrVars.hidden; x+=1) {
+                for (int y = ys; y <= ye && !FPHidingVars.hidden; y+=1) {
+                    for (int x = xs; x <= xe && !FPHidingVars.hidden; x+=1) {
                         // Retrieving contents of a pixel
                         int pixel = bufferedImage.getRGB(x, y);
                         // Creating a Color object from pixel value
@@ -96,17 +96,17 @@ public class steg {
                         // Modifying the RGB values by inserting the fprintBit
 
                         int newRedCover = hideBitInColor(redCover, fPrintPixelArray);
-                        if (fPArrVars.hidden) {
+                        if (FPHidingVars.hidden) {
                             System.out.println("End : x:" + x + " ,y: " + y);
                             break;
                         }
                         int newGreenCover = hideBitInColor(greenCover, fPrintPixelArray);
-                        if (fPArrVars.hidden) {
+                        if (FPHidingVars.hidden) {
                             System.out.println("End : x:" + x + " ,y: " + y);
                             break;
                         }
                         int newBlueCover = hideBitInColor(blueCover, fPrintPixelArray);
-                        if (fPArrVars.hidden) {
+                        if (FPHidingVars.hidden) {
                             System.out.println("End : x:" + x + " ,y: " + y);
                             break;
                         }
@@ -134,24 +134,24 @@ public class steg {
     //getting 
     private static int hideBitInColor(int coverColor, ArrayList<Boolean[][]> fPrintPixelArray){
         // finger print image current color of current pixel
-        Boolean curColorBit = fPrintPixelArray.get(fPArrVars.curfPrintPixel)[fPArrVars.curfPrintColor][fPArrVars.curfPrintBit];
+        Boolean curColorBit = fPrintPixelArray.get(FPHidingVars.curfPrintPixel)[FPHidingVars.curfPrintColor][FPHidingVars.curfPrintBit];
 
         int newColor=coverColor;     
         // incrementing the color counter
 
-        fPArrVars.curfPrintBit++;
+        FPHidingVars.curfPrintBit++;
 
-        fPArrVars.curfPrintColor += fPArrVars.curfPrintBit/8;
+        FPHidingVars.curfPrintColor += FPHidingVars.curfPrintBit/8;
 
 
-        fPArrVars.curfPrintPixel += fPArrVars.curfPrintColor / 3;
+        FPHidingVars.curfPrintPixel += FPHidingVars.curfPrintColor / 3;
 
-        fPArrVars.curfPrintColor = fPArrVars.curfPrintColor % 3;
-        fPArrVars.curfPrintBit %= 8;
+        FPHidingVars.curfPrintColor = FPHidingVars.curfPrintColor % 3;
+        FPHidingVars.curfPrintBit %= 8;
 
          // checking if the fingerprint hiding completed or not
-         if (fPArrVars.curfPrintPixel >= fPrintPixelArray.size()) {
-            fPArrVars.hidden = true;
+         if (FPHidingVars.curfPrintPixel >= fPrintPixelArray.size()) {
+            FPHidingVars.hidden = true;
             System.out.println("hidden successfully:^)");
             //break;
         }
@@ -168,7 +168,7 @@ public class steg {
     }
 
     // getting fingerprint image pixel array from the fingerprint image file
-    private static ArrayList<Boolean[][]> getPixelArray(File image) {
+    public static ArrayList<Boolean[][]> getPixelArray(File image) {
         ArrayList<Boolean[][]> pixelArray = new ArrayList<Boolean[][]>();
 
         BufferedImage bufferedImage = null;
@@ -214,18 +214,18 @@ public class steg {
 
     private static void fillColor(Boolean[] colorArr, int color) {
         String colorString =Integer.toBinaryString(color);
-        int index = 0;
+        int index = 7;
         for (int i=colorString.length()-1; i>=0; i--) {
             colorArr[index]=('1'==colorString.charAt(i));
             //System.out.println(colorArr[index]+" "+colorString.charAt(i));
-            index++;
+            index--;
         }
 
     }
 
 }
 
-class fPArrVars{
+class FPHidingVars{
     public static int curfPrintPixel = 0;
     public static int curfPrintColor = 0;
     public static int curfPrintBit = 0;
