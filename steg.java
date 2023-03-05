@@ -12,10 +12,10 @@ public class steg {
     public static void main(String[] args) {
 
         // cover image file
-        File coverImg = new File("cover-enl.png");
+        File coverImg = new File("cover-images/cover-enl.png");
 
         // fingerprint file
-        File fPrint = new File("thumb-shorten.png");
+        File fPrint = new File("thumb-images/thumb-shorten.png");
 
         try {
             hideFingerprint(fPrint, coverImg);
@@ -126,7 +126,7 @@ public class steg {
 
         addSeparator();
         // Saving the modified image
-        File file = new File("steg-cover.png");
+        File file = new File("stego-cover/steg-cover.png");
         ImageIO.write(bufferedImage, "png", file);
         System.out.println("Image Steganography Done...");
 

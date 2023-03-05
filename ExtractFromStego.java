@@ -11,7 +11,7 @@ public class ExtractFromStego {
     public static void main(String[] args) {
 
         // cover image file
-        File coverImg = new File("steg-cover.png");
+        File coverImg = new File("cover-images/steg-cover.png");
 
         // fingerprint file
         // File fPrint = new File("thumb-extracted.png");
@@ -104,7 +104,7 @@ public class ExtractFromStego {
                 System.out.println("Pixel array length: " + fPrintPixelArray.size());
 
                 // fingerprint file
-                File fPrint = new File("./extracted-finger-prints/extracted-thumb-reg-" + region + "-seg-" + seg + ".png");
+                File fPrint = new File("extracted-finger-prints/extracted-thumb-reg-" + region + "-seg-" + seg + ".png");
 
                 getImageFromPixelArray(fPrint, fPrintPixelArray);
             }

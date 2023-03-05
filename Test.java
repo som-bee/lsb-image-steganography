@@ -28,9 +28,9 @@ public  class Test {
         
         
 
-        ArrayList<Boolean[][]> pixArr=  steg.getPixelArray(new File("thumb-shorten.png"));
+        ArrayList<Boolean[][]> pixArr=  steg.getPixelArray(new File("thumb-images/thumb-shorten.png"));
 
-        ExtractFromStego.getImageFromPixelArray(new File("extracted-thumb-test.png"), pixArr);
+        ExtractFromStego.getImageFromPixelArray(new File("test-assets/extracted-thumb-test.png"), pixArr);
        
     }
 } 
